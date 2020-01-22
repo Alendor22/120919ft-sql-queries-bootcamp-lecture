@@ -10,3 +10,12 @@
 -- Select user username and character count with the highest amount of characters
 -- Select character name and user username with the highest level character
 
+SELECT AVG((
+  SELECT COUNT(*) AS character_count
+  FROM users
+    JOIN characters
+    ON characters.user_id = users.id
+  GROUP BY users.id)) AS average_count
+FROM users
+  JOIN characters
+  ON characters.user_id = users.id;
